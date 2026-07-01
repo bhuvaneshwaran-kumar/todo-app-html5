@@ -1,13 +1,25 @@
-import { useAppSelector } from "./store/store"
+
+import { Route, Routes } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+import PrivateRoute from "./components/PrivateRoute";
+import TodoPage from "./pages/TodoPage";
+import PublicRoute from "./components/PublicRoute";
+import RegisterPage from "./pages/RegisterPage";
 
 function App() {
 
-  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
-  
   return (
     <div>
-      <h1>MERN Stack App</h1>
-      <h1>We are creating a simple TODO app using MERN stack. Checking if the auto deployment is happening correctly. in vercel</h1>
+      <Routes>
+        <Route element={<PublicRoute />}>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Route>
+
+        <Route element={<PrivateRoute />}>
+          <Route path="/" element={<TodoPage message="Welcome to the Todo Page!" />} />
+        </Route>
+      </Routes>
     </div>
   )
 }
