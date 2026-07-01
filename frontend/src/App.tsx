@@ -1,4 +1,9 @@
+import { useAppSelector } from "./store/store"
+
 function App() {
+
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+  
   return (
     <div>
       <h1>MERN Stack App</h1>
